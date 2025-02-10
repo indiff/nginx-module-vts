@@ -6,8 +6,7 @@
 
 #include "ngx_http_vhost_traffic_status_module.h"
 #include "ngx_http_vhost_traffic_status_dump.h"
-
-
+#include <limits.h>
 static u_char  NGX_HTTP_VHOST_TRAFFIC_STATUS_DUMP_DATA_PAD[] = { 0x53, 0x54, 0x56 };
 
 
