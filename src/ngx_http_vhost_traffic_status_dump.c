@@ -25,28 +25,28 @@ static ngx_int_t ngx_http_vhost_traffic_status_dump_restore_add_node(ngx_event_t
 void
 ngx_http_vhost_traffic_status_file_lock(ngx_file_t *file)
 {
-    ngx_err_t  err = ngx_lock_fd(file->fd);
+    // ngx_err_t  err = ngx_lock_fd(file->fd);
 
-    if (err == 0) {
-        return;
-    }
+    // if (err == 0) {
+    //     return;
+    // }
 
-    ngx_log_error(NGX_LOG_ALERT, file->log, err,
-                  ngx_lock_fd_n " \"%s\" failed", file->name.data);
+    // ngx_log_error(NGX_LOG_ALERT, file->log, err,
+    //               ngx_lock_fd_n " \"%s\" failed", file->name.data);
 }
 
 
 void
 ngx_http_vhost_traffic_status_file_unlock(ngx_file_t *file)
 {
-    ngx_err_t  err = ngx_unlock_fd(file->fd);
+    // ngx_err_t  err = ngx_unlock_fd(file->fd);
 
-    if (err == 0) {
-        return;
-    }
+    // if (err == 0) {
+    //     return;
+    // }
 
-    ngx_log_error(NGX_LOG_ALERT, file->log, err,
-                  ngx_unlock_fd_n " \"%s\" failed", file->name.data);
+    // ngx_log_error(NGX_LOG_ALERT, file->log, err,
+    //               ngx_unlock_fd_n " \"%s\" failed", file->name.data);
 }
 
 

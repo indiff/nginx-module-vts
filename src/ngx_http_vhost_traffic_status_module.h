@@ -199,23 +199,32 @@
     : NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAMS + 3 * n                          \
 )
 
-#define ngx_http_vhost_traffic_status_string_to_group(s) (unsigned) (          \
-{                                                                              \
-    unsigned n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_NO;                    \
-    if (*s == 'N' && *(s + 1) == 'O') {                                        \
-        n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_NO;                         \
-    } else if (*s == 'U' && *(s + 1) == 'A') {                                 \
-        n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_UA;                         \
-    } else if (*s == 'U' && *(s + 1) == 'G') {                                 \
-        n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_UG;                         \
-    } else if (*s == 'C' && *(s + 1) == 'C') {                                 \
-        n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_CC;                         \
-    } else if (*s == 'F' && *(s + 1) == 'G') {                                 \
-        n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_FG;                         \
-    }                                                                          \
-    n;                                                                         \
-}                                                                              \
+// #define ngx_http_vhost_traffic_status_string_to_group(s) (unsigned) (          \
+// {                                                                              \
+//     unsigned n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_NO;                    \
+//     if (*s == 'N' && *(s + 1) == 'O') {                                        \
+//         n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_NO;                         \
+//     } else if (*s == 'U' && *(s + 1) == 'A') {                                 \
+//         n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_UA;                         \
+//     } else if (*s == 'U' && *(s + 1) == 'G') {                                 \
+//         n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_UG;                         \
+//     } else if (*s == 'C' && *(s + 1) == 'C') {                                 \
+//         n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_CC;                         \
+//     } else if (*s == 'F' && *(s + 1) == 'G') {                                 \
+//         n = NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_FG;                         \
+//     }                                                                          \
+//     n;                                                                         \
+// }                                                                              \
+// )
+#define ngx_http_vhost_traffic_status_string_to_group(s) (                     \
+    (*s == 'N' && *(s + 1) == 'O')?NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_NO:  \
+    (*s == 'U' && *(s + 1) == 'A')?NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_UA:  \
+    (*s == 'U' && *(s + 1) == 'G')?NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_UG:  \
+    (*s == 'C' && *(s + 1) == 'C')?NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_CC:  \
+    (*s == 'F' && *(s + 1) == 'G')?NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_FG:  \
+    NGX_HTTP_VHOST_TRAFFIC_STATUS_UPSTREAM_NO                                  \
 )
+
 
 #define ngx_http_vhost_traffic_status_max_integer (NGX_ATOMIC_T_LEN < 12)      \
     ? "4294967295"                                                             \
